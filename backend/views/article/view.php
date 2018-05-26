@@ -5,6 +5,7 @@
  * Email: job@feehi.com
  * Created at: 2016-04-14 12:09
  */
+
 use common\libs\Constants;
 use yii\widgets\DetailView;
 
@@ -55,7 +56,7 @@ use yii\widgets\DetailView;
         [
             'attribute' => 'visibility',
             'value' => function($model){
-                return Constants::getYesNoItems($model->visibility);
+                return Constants::getArticleVisibility($model->visibility);
             }
         ],
         'password',

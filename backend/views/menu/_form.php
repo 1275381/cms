@@ -15,6 +15,7 @@ use backend\widgets\ActiveForm;
 use common\helpers\FamilyTree;
 use common\libs\Constants;
 use backend\models\Menu;
+use yii\helpers\ArrayHelper;
 
 $this->title = "Backend Menus";
 
@@ -35,13 +36,13 @@ if ($parent_id != '') {
                         $disabledOptions[$model->id] = ['disabled' => true];
                         $familyTree = new FamilyTree(Menu::getMenus(Menu::BACKEND_TYPE));
                         $descendants = $familyTree->getDescendants($model->id);
-                        $descendants = array_column($descendants, 'id');
+                        $descendants = ArrayHelper::getColumn($descendants, 'id');
                         foreach ($descendants as $descendant){
                             $disabledOptions[$descendant] = ['disabled' => true];
                         }
                     }
                 ?>
-                <?= $form->field($model, 'parent_id')->label(yii::t('app', 'Parent Menu Name'))->dropDownList(Menu::getMenusName(Menu::BACKEND_TYPE), ['options' => $disabledOptions]) ?>
+                <?= $form->field($model, 'parent_id')->label(Yii::t('app', 'Parent Menu Name'))->dropDownList(Menu::getMenusName(Menu::BACKEND_TYPE), ['options' => $disabledOptions]) ?>
                 <div class="hr-line-dashed"></div>
                 <?= $form->field($model, 'name')->textInput(['maxlength' => 64]) ?>
                 <div class="hr-line-dashed"></div>
@@ -49,7 +50,7 @@ if ($parent_id != '') {
                 <div class="hr-line-dashed"></div>
                 <?= $form->field($model, 'url')->textInput(['maxlength' => 512]) ?>
                 <div class="hr-line-dashed"></div>
-                <?= $form->field($model, 'icon')->label(yii::t('app', 'Icon').' <a href="http://fontawesome.io/icons/" target="_blank">url</a>')->textInput(['maxlength' => 64]) ?>
+                <?= $form->field($model, 'icon')->label(Yii::t('app', 'Icon').' <a href="http://fontawesome.io/icons/" target="_blank">url</a>')->textInput(['maxlength' => 64]) ?>
                 <div class="hr-line-dashed"></div>
                 <?= $form->field($model, 'sort')->textInput(['maxlength' => 64]) ?>
                 <div class="hr-line-dashed"></div>

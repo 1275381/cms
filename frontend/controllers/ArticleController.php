@@ -11,6 +11,7 @@ namespace frontend\controllers;
 use yii;
 use common\libs\Constants;
 use frontend\models\form\ArticlePasswordForm;
+use yii\base\Event;
 use yii\helpers\ArrayHelper;
 use yii\web\Controller;
 use frontend\models\Article;

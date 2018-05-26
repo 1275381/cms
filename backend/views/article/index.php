@@ -26,7 +26,7 @@ use backend\grid\ActionColumn;
 use backend\grid\StatusColumn;
 
 $this->title = 'Articles';
-$this->params['breadcrumbs'][] = yii::t('app', 'Articles');
+$this->params['breadcrumbs'][] = Yii::t('app', 'Articles');
 
 ?>
 <style>
@@ -53,9 +53,9 @@ $this->params['breadcrumbs'][] = yii::t('app', 'Articles');
                         ],
                         [
                             'attribute' => 'cid',
-                            'label' => yii::t('app', 'Category'),
+                            'label' => Yii::t('app', 'Category'),
                             'value' => function ($model) {
-                                return $model->category ? $model->category->name : yii::t('app', 'uncategoried');
+                                return $model->category ? $model->category->name : Yii::t('app', 'uncategoried');
                             },
                             'filter' => Category::getCategoriesName(),
                         ],
@@ -78,8 +78,8 @@ $this->params['breadcrumbs'][] = yii::t('app', 'Articles');
                                 } else {
                                     $num = Constants::YesNo_Yes;
                                 }
-                                return Html::a(Constants::getYesNoItems($num), $model->thumb ? yii::$app->params['site']['url'] . $model->thumb : 'javascript:void(0)', [
-                                    'img' => $model->thumb ? yii::$app->params['site']['url'] . $model->thumb : '',
+                                return Html::a(Constants::getYesNoItems($num), $model->thumb ? $model->thumb : 'javascript:void(0)', [
+                                    'img' => $model->thumb ? $model->thumb : '',
                                     'class' => 'thumbImg',
                                     'target' => '_blank',
                                 ]);
@@ -176,7 +176,7 @@ $this->params['breadcrumbs'][] = yii::t('app', 'Articles');
         }, 200);
         var url = $(this).attr('img');
         if (url.length == 0) {
-            layer.tips('<?=yii::t('app', 'No picture')?>', $(this));
+            layer.tips('<?=Yii::t('app', 'No picture')?>', $(this));
         } else {
             layer.tips('<img style="max-width: 100px;max-height: 60px" src=' + url + '>', $(this));
         }

@@ -101,7 +101,7 @@ $this->title = yii::t('install', 'Create Data');
                     </tr>
                     <tr>
                         <td class="text-left"><?= yii::t('install', 'Site Url') ?>：</td>
-                        <td><input type="text" name="siteurl" value="<?= yii::$app->getRequest()->hostInfo ?>/"
+                        <td><input type="text" name="siteurl" value="<?= yii::$app->getRequest()->getHostInfo() . yii::$app->getRequest()->getBaseUrl() ?>/"
                                    class="input" autoComplete="off"></td>
                         <td>
                             <div id="js-install-tip-siteurl">
@@ -273,6 +273,7 @@ $this->title = yii::t('install', 'Create Data');
                         success: function (data) {
                             $(".layui-layer").remove();
                             if (data.message == '') {
+                                $("button[type=submit]").attr('disabled', true);
                                 form.submit();
                             } else {
                                 alert(data.message);
@@ -280,11 +281,7 @@ $this->title = yii::t('install', 'Create Data');
                         },
                         error: function (data) {
                             $(".layui-layer").remove();
-                            if (data.responseText == '<pre></pre>') {
-                                alert("<?=yii::t('install', 'Cannot find database host')?>");
-                            } else {
-                                alert(data.responseJSON.message);
-                            }
+                            alert(data.responseJSON.message);
                         }
                     });
                 }
